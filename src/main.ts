@@ -9,7 +9,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { connectToDB, disconnectFromDB } from "./db/config";
 import logger from "./utils/logger";
-import { CORS_ORIGIN, PORT } from "./constants";
+import { PORT } from "./constants";
 import rateLimiter from "./api/middleware/rateLimiter";
 import userRoute from "./api/routes/user.route";
 import accountRoute from "./api/routes/account.route";
@@ -29,8 +29,10 @@ app.get("/", (req, res) => {
   return res.send("Up and running bub!");
 });
 
-const server = app.listen(PORT, async () => {
-  //await connectToDB();
+const port = PORT || 4000;
+
+const server = app.listen(port, async () => {
+  await connectToDB();
   logger.info(`Server listening at htp://localhost:${PORT}`);
 });
 
