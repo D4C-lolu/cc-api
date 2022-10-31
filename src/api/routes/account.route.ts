@@ -12,13 +12,26 @@ import { editAccountSchema } from "../schemas/editAccount.schema";
 
 const accountRouter = Router();
 
-//GET ALL ACCOUNTS
+/*
+* @route GET /api/account
+* @desc Get all accounts
+* @access Public
+
+*/
 accountRouter.get("/", getAccountsHandler);
 
-//GET Single Account by ID
+/**
+ * @route GET /api/account/:id
+ * @desc Get account by id
+ * @access Public
+ */
 accountRouter.get("/:id", getAccountByIdHandler);
 
-//Update Account
+/**
+ * @route PUT /api/accounts
+ * @desc Update account balance via account number
+ * @access Public
+ */
 accountRouter.patch(
   "/",
   processRequestBody(editAccountSchema.body),
@@ -26,13 +39,23 @@ accountRouter.patch(
 );
 
 //Create Account
+
+/**
+ * @route POST /api/accounts
+ * @desc Create account
+ * @access Public
+ */
 accountRouter.post(
   "/",
   processRequestBody(createAccountSchema.body),
   createAccountHandler
 );
 
-//Delete Account
+/**
+ * @route DELETE /api/accounts/:id
+ * @desc Delete account by id
+ * @access Public
+ */
 accountRouter.delete("/:id", deleteAccountHandler);
 
 export default accountRouter;

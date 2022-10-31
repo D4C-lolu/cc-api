@@ -13,7 +13,6 @@ import { CORS_ORIGIN, PORT } from "./constants";
 import rateLimiter from "./api/middleware/rateLimiter";
 import userRoute from "./api/routes/user.route";
 import accountRoute from "./api/routes/account.route";
-import requireUser from "./api/middleware/requireUser";
 
 const app = express();
 
@@ -28,7 +27,7 @@ app.use(
 app.use(helmet());
 app.use(rateLimiter);
 
-app.use("/accounts", requireUser, accountRoute);
+app.use("/accounts", accountRoute);
 app.use("/users", userRoute);
 //Healthcheck
 app.get("/", (req, res) => {

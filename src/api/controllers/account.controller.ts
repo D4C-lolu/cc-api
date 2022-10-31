@@ -50,6 +50,7 @@ export async function createAccountHandler(
   const { user_name, balance } = req.body;
   try {
     const newAccount = await createAccount({ user_name, balance });
+    console.log("Done");
     return res.status(StatusCodes.CREATED).json(newAccount);
   } catch (e) {
     return res.status(StatusCodes.BAD_REQUEST).json(e);

@@ -11,11 +11,18 @@ userRouter.get("/", requireUser, (req, res) => {
   return res.send(res.locals.user);
 });
 
+/*
+* @route POST /api/user/login
+* @desc Login user
+* @access Public
+
+
+*/
 userRouter.post("/", processRequestBody(loginSchema.body), loginHandler);
 
 userRouter.post(
   "/new",
-  [requireUser, processRequestBody(registerUserSchema.body)],
+  [processRequestBody(registerUserSchema.body)],
   signUpHandler
 );
 
