@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 const server = app.listen(PORT, async () => {
-  await connectToDB();
+  //await connectToDB();
   logger.info(`Server listening at htp://localhost:${PORT}`);
 });
 
