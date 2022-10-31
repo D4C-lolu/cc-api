@@ -1,4 +1,3 @@
-import logger from "../utils/logger";
 import { Sequelize } from "sequelize";
 import { accountModel, userModel } from "./models";
 
@@ -21,16 +20,16 @@ export async function connectToDB() {
   try {
     await sequelizeConnection.authenticate();
     await sequelizeConnection.sync({ alter: true });
-    logger.info("Connection has been established successfully.");
+    console.log("Connection has been established successfully.");
   } catch (error) {
-    logger.error("Unable to connect to the database:", error);
+    console.error("Unable to connect to the database:", error);
   }
 }
 
 export async function disconnectFromDB() {
   await sequelizeConnection.close();
 
-  logger.info("Disconnect from database");
+  console.log("Disconnect from database");
 
   return;
 }

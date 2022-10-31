@@ -8,7 +8,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
 import { connectToDB, disconnectFromDB } from "./db/config";
-import logger from "./utils/logger";
 import { PORT } from "./constants";
 import rateLimiter from "./api/middleware/rateLimiter";
 import userRoute from "./api/routes/user.route";
@@ -37,20 +36,20 @@ const port = PORT || 4000;
 
 const server = app.listen(port, async () => {
   await connectToDB();
-  logger.info(`Server listening at htp://localhost:${PORT}`);
+  console.log(`Server listening at htp://localhost:${PORT}`);
 });
 
 const signals = ["SIGTERM", "SIGINT", "SIGQUIT"];
 
 function gracefulShutdown(signal: string) {
   process.on(signal, async () => {
-    logger.info("Goodbye, got signal", signal);
+    console.log("Goodbye, got signal", signal);
     server.close();
 
     // disconnect from the db
     await disconnectFromDB();
 
-    logger.info("My work here is done");
+    console.log("My work here is done");
 
     process.exit(0);
   });
