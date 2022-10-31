@@ -2,12 +2,12 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "tsnd --exit-child --transpile-only src/main.ts",
     "build": "tsc",
-    "start": "node ./dist/src/main.js",
-    "postinstall": "tsc",
+    "start": "node dist/main.js",
+    "postinstall": "npm run build",
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
