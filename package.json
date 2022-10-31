@@ -6,15 +6,14 @@
   "scripts": {
     "dev": "tsnd --exit-child --transpile-only src/main.ts",
     "build": "tsc",
-    "start": "node dist/src/main.js",
+    "start": "node ./dist/src/main.js",
     "postinstall": "tsc",
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
-  "engines":{
+  "engines": {
     "node": "16.13.2"
   },
-  
   "keywords": [],
   "author": "D4C-lolu",
   "license": "ISC",
